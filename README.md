@@ -2,8 +2,19 @@
 - Contributed by Omar Aly and Mohammed Selman
 - A web app meant to behave as a general centralized repo where all CS resources are to be stored
 
+# Built with
+- Backend: Django
+- Database: postgreSQL relational DBMS
+- Frontend: html, tailwindCSS 
+
 # Requirements
 ## Python and django packages
+
+### First to make sure you have all the right packages
+### requirements.txt should include all that is needed to successfully run django and postgreSQL
+```
+pip install -r requirements.txt
+```
 
 # How to run: 
 #### you need to navigate to the src directory
