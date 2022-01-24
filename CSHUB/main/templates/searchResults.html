@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../static/admin/css/main.css">
+    <title>CS HUB</title>
+</head>
+<body class="">
+    <header class="border-b p-3">
+        <div class="container mx-auto flex items-center justify-between relative">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'admin/img/logo.svg' %}" alt="Logo" width=120>
+            </a>
+                <nav>
+                    <ul class="flex items-center">
+                        <li>
+                            <a href="{% url 'signin' %}" class="ml-4 px-4 py-2 font-light text-base
+                            rounded-md bg-[#154854] text-white transition hover:bg-neutral-300 hover:text-black flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                {% if name %}
+                                    Hey, {{ name }}
+                                {% else %}
+                                    Log In/Sign Up
+                                {% endif %}
+                            </a>
+                        </li>
+
+                        {% if name %}
+                        <li>
+                            <a href="{% url 'logout' %}" class="ml-4 px-4 py-2 font-light text-base
+                            rounded-md bg-[#154854] text-white transition hover:bg-neutral-300 hover:text-black flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            Logout
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+        </div>
+    </header>
+    <section class="hero px-3 py-6">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between mt-3 mx-10">
+                <span class="font-normal text-base flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    Back
+                </span>
+            </div>
+
+            <div class="pl-14 mx-16">
+                <p class="mt-4 mb-4">
+                    <span class="font-medium">{{ count }}</span> total search results
+                </p>
+            
+                <div class="flex">
+                    FILTER
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                
+                <div class="w-11/12">
+                    {% for resource in resources %}
+                    <a href="#">
+                        <div class="my-4 p-3 border border-gray-300 rounded-lg
+                        bg-white flex px-10 gap-x-6 justify-between
+                        hover:bg-neutral-200">
+                            <span>
+                                <p class="font-medium mb-3">{{ resource.title }}</p>
+                            </span>
+                            <div>
+                                <p>{{ resource.description }}</p>
+                                <p class="ml-6"><span class="text-2xl">{{ resource.category }}</span></p>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>        
+            </div>
+        </div>
+    </section>
+</body>
+</html>

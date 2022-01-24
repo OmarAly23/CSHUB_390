@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../static/admin/css/main.css">
+    <title>CS HUB</title>
+</head>
+<body class="">
+    <header class="border-b p-3">
+        <div class="container mx-auto flex items-center justify-between relative">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'admin/img/logo.svg' %}" alt="Logo" width=120>
+            </a>
+                <nav>
+                    <ul class="flex items-center">
+                        <li>
+                            <a href="{% url 'signin' %}" class="ml-4 px-4 py-2 font-light text-base
+                            rounded-md bg-[#154854] text-white transition hover:bg-neutral-300 hover:text-black flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                {% if name %}
+                                    Hey, {{ name }}
+                                {% else %}
+                                    Log In/Sign Up
+                                {% endif %}
+                            </a>
+                        </li>
+
+                        {% if name %}
+                        <li>
+                            <a href="{% url 'logout' %}" class="ml-4 px-4 py-2 font-light text-base
+                            rounded-md bg-[#154854] text-white transition hover:bg-neutral-300 hover:text-black flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            Logout
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+        </div>
+    </header>
+    <section class="hero px-3 py-6">
+        <div class="container mx-auto">
+            <span class="font-normal text-base flex mt-3 mx-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                <a href="{% url 'home' %}">Back</a>
+            </span>
+
+            <div class="mt-7 mx-10">
+                <h1 class="text-2xl font-semibold mb-3">
+                    You are adding a resource as a user
+                </h1>
+
+                <form action="{% url 'add' %}" method="post">
+                    {% csrf_token %}
+                    <p class="mt-7 text-lg">
+                        1. What are you adding
+                    </p>
+                    <input type="text" id="category" name="category"
+                    class="border border-neutral-300 mt-2 px-3 py-1.5 w-7/12"
+                    placeholder="Book/videos/other?....">
+
+                    <p class="mt-7 text-lg">
+                        2. Title
+                    </p>
+                    <input type="text" id="title" name="title"
+                    class="border border-neutral-300 mt-2 px-3 py-1.5 w-7/12"
+                    placeholder="Title ...">
+
+                    <p class="mt-7 text-lg">
+                        3. Link/Description
+                    </p>
+                    <textarea class="mt-2 mb-10 px-3 py-1.5
+                    font-normal text-lg
+                    border border-gray-300 w-full" name="description" id="description"
+                    rows=7
+                    placeholder="Description ..."></textarea>
+
+                    <div class="flex justify-center">
+                        <input type="submit" value="Submit"
+                        class="px-7 py-2 font-light text-lg
+                        rounded-md bg-[#154854] text-white transition
+                        hover:bg-neutral-300 hover:text-black">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
